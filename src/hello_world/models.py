@@ -2,15 +2,28 @@ from django.db import models
 
 # Create your models here.
 
+class Public(models.Model):
+    name = models.CharField(
+        "Издательство",
+        max_length=50
+    )
+    books = models.ManyToManyField(
+        'hello_world.Seris',
+        verbose_name="Книги"
+    )
+    def __str__(self):
+        return self.name
+
 class Aut_book(models.Model): 
     author = models.CharField(
         'Авторы книг',
-        max_length=20,
+        max_length=50,
         blank=False,
         null=False
     )
     description = models.TextField(
         'Биография автора',
+        max_length=500,
         blank=True,
         null=True
     )
@@ -22,12 +35,13 @@ class Aut_book(models.Model):
 class Seris(models.Model): 
     number = models.CharField(
         'Серия книги',
-        max_length=20,
+        max_length=50,
         blank=False,
         null=False
     )
     number_type = models.ForeignKey(
         Aut_book,
+        verbose_name="Автор",
         on_delete=models.PROTECT
     )
 
