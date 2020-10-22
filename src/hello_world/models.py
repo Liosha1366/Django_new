@@ -6,6 +6,8 @@ class Aut_book(models.Model):
     author = models.CharField(
         'Авторы книг',
         max_length=20,
+        blank=False,
+        null=False
     )
     description = models.TextField(
         'Биография автора',
@@ -17,3 +19,17 @@ class Aut_book(models.Model):
         return self.author
 
 
+class Seris(models.Model): 
+    number = models.CharField(
+        'Серия книги',
+        max_length=20,
+        blank=False,
+        null=False
+    )
+    number_type = models.ForeignKey(
+        Aut_book,
+        on_delete=models.PROTECT
+    )
+
+    def __str__(self):
+        return f'{self.number} {self.number_type.author}'
