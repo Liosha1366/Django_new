@@ -2,17 +2,38 @@ from django.db import models
 
 # Create your models here.
 
+
+
 class Public(models.Model):
     name = models.CharField(
         "Издательство",
-        max_length=50
+        max_length=50,
+        blank=False,
+        null=False
     )
     books = models.ManyToManyField(
         'hello_world.Seris',
-        verbose_name="Книги"
+        verbose_name="Название книги"
     )
     def __str__(self):
         return self.name
+
+
+class Genre(models.Model):
+    gener_tab = models.CharField(
+        "Жанр",
+        max_length=50,
+        blank=False,
+        null=False
+    )
+    number_type = models.ForeignKey(
+        Public,
+        verbose_name="Книги",
+        on_delete=models.PROTECT
+    )
+    def __str__(self):
+        return f'{self.gener_tab} {self.number_type.name}'
+
 
 class Aut_book(models.Model): 
     author = models.CharField(
