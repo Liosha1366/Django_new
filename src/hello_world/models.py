@@ -19,21 +19,6 @@ class Public(models.Model):
         return self.name
 
 
-class Genre(models.Model):
-    gener_tab = models.CharField(
-        "Жанр",
-        max_length=50,
-        blank=False,
-        null=False
-    )
-    number_type = models.ForeignKey(
-        Public,
-        verbose_name="Книги",
-        on_delete=models.PROTECT
-    )
-    def __str__(self):
-        return f'{self.gener_tab} {self.number_type.name}'
-
 
 class Aut_book(models.Model): 
     author = models.CharField(
@@ -53,6 +38,7 @@ class Aut_book(models.Model):
         return self.author
 
 
+
 class Seris(models.Model): 
     number = models.CharField(
         'Серия книги',
@@ -68,3 +54,20 @@ class Seris(models.Model):
 
     def __str__(self):
         return f'{self.number} {self.number_type.author}'
+
+
+
+class Genre(models.Model):
+    gener_tab = models.CharField(
+        "Жанр",
+        max_length=50,
+        blank=False,
+        null=False
+    )
+    number_type = models.ForeignKey(
+        Seris,
+        verbose_name="Книги",
+        on_delete=models.PROTECT
+    )
+    def __str__(self):
+        return f'{self.gener_tab} {self.number_type.number}'
