@@ -4,6 +4,25 @@ from django.db import models
 
 
 class Publish(models.Model):
+    author = models.CharField(
+        'Имя автора',
+        max_length=50,
+        blank=True,
+        null=True,
+        
+    )
+    last_name = models.CharField(
+        "Фамилия автора",
+        max_length=40,
+        blank=True,
+        null=True,
+        )
+    description = models.TextField(
+        'Биография автора',
+        max_length=500,
+        blank=True,
+        null=True,
+    )
     name = models.CharField(
         "Издательство",
         max_length=50,
@@ -32,7 +51,7 @@ class Publish(models.Model):
         'hello_world.Seris',
         verbose_name="Название книги",
         blank=False,
-        null=False,
+       
     )
 
     def __str__(self):
@@ -57,7 +76,7 @@ class Aut_book(models.Model):
         'Биография автора',
         max_length=500,
         blank=True,
-        null=True,
+        
     )
     
     def __str__(self):

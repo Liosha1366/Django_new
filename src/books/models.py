@@ -1,7 +1,7 @@
 from django.db import models
 # Create your models here.
 
-class Publishing(models.Model):
+class Book(models.Model):
     name = models.CharField(
         "Издательство",
         max_length=50,
@@ -30,8 +30,10 @@ class Publishing(models.Model):
         'hello_world.Seris',
         verbose_name="Название книги",
         blank=False,
-        null=False,
+        
     )
+
+    publication_date = models.DateField()
 
     def __str__(self):
         return self.name
@@ -41,18 +43,5 @@ class Publishing(models.Model):
 
 
 
-# class Book(models.Model):
-#     title = models.CharField(
-#         "",
-#         max_length=100,
-#     )
-#     authors = models.ManyToManyField(
-#         Aut_book,
-#         verbose_name="Автор",
-#         )
-#     publish = models.ForeignKey(
-#         Publish,
-#         verbose_name="Издательство",
-#     )
-#     publication_date = models.DateField()
+
 
