@@ -31,8 +31,8 @@ class Publish(models.Model):
     books = models.ManyToManyField(
         'hello_world.Seris',
         verbose_name="Название книги",
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
     )
 
     def __str__(self):
@@ -42,13 +42,13 @@ class Publish(models.Model):
 
 class Aut_book(models.Model): 
     author = models.CharField(
-        'Автор',
+        'Имя автора',
         max_length=50,
         blank=False,
         null=False,
     )
     last_name = models.CharField(
-        "Фамилия",
+        "Фамилия автора",
         max_length=40,
         blank=True,
         null=True,
