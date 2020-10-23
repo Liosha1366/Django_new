@@ -3,48 +3,75 @@ from django.db import models
 # Create your models here.
 
 
-
-class Public(models.Model):
+class Publish(models.Model):
     name = models.CharField(
         "Издательство",
         max_length=50,
         blank=False,
-        null=False
+        null=False,
+    )
+    address = models.CharField(
+        "Адрес",
+        max_length=50,
+        blank=True,
+        null=True,
+    )
+    city = models.CharField(
+        "Город",
+        max_length=60,
+        blank=True,
+        null=True,
+    )
+    country = models.CharField(
+        "Страна",
+        max_length=50,
+        blank=True,
+        null=True,
     )
     books = models.ManyToManyField(
         'hello_world.Seris',
-        verbose_name="Название книги"
+        verbose_name="Название книги",
+        blank=True,
+        null=True,
     )
+
     def __str__(self):
         return self.name
 
-
+    
 
 class Aut_book(models.Model): 
     author = models.CharField(
-        'Авторы книг',
+        'Автор',
         max_length=50,
         blank=False,
-        null=False
+        null=False,
     )
+    last_name = models.CharField(
+        "Фамилия",
+        max_length=40,
+        blank=True,
+        null=True,
+        )
     description = models.TextField(
         'Биография автора',
         max_length=500,
         blank=True,
-        null=True
+        null=True,
     )
-
+    
     def __str__(self):
         return self.author
 
+    
 
 
 class Seris(models.Model): 
     number = models.CharField(
         'Серия книги',
         max_length=50,
-        blank=False,
-        null=False
+        blank=True,
+        null=True
     )
     number_type = models.ForeignKey(
         Aut_book,
