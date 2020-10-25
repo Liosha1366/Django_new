@@ -112,7 +112,7 @@ class Genre(models.Model):
     )
     number_type = models.ForeignKey(
         Seris,
-        verbose_name="Книги",
+        verbose_name="Название книги",
         on_delete=models.PROTECT
     )
     def __str__(self):
