@@ -5,7 +5,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from hello_world.models import models
 from hello_world.models import Aut_book
 
-from hello_world.forms import forms
+from hello_world.forms import CreateAut_bookForm, UpdateAut_bookForm, CreatePublishForm, UpdatePublishForm
+from hello_world.forms import CreateSerisForm, UpdateSerisForm, CreateGenreForm, UpdateGenreForm
 
 # from .forms import 
 # def hello_world(request):
