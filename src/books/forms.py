@@ -2,20 +2,29 @@ from django import forms
 from books import models
 
 
-class CreateAut_bookForm(forms.Form):
-    author = forms.CharField(max_length=50, required=True)
-    last_name = forms.CharField( max_length=50, required=True) 
-    description = forms.CharField( max_length=500, required=True)
 
-class UpdateAut_bookForm(forms.Form):
-    author = forms.CharField(max_length=50, required=True)
+class UpdateBookForm(forms.Form):
+    name = forms.CharField(max_length=50, required=True)
     pk = forms.HiddenInput()
 
+class CreateBookForm(forms.Form):
+    name = forms.CharField(max_length=50, required=True)
+    # address = forms.CharField( max_length=50, required=True) 
+    # city = forms.CharField( max_length=50, required=True)
+    # author = forms.CharField(max_length=50, required=True)
+    # country = forms.CharField( max_length=50, required=True) 
+    # author = forms.CharField( max_length=00, required=True)
+    # number = forms.CharField(max_length=50, required=True)
+    # gener = forms.CharField( max_length=50, required=True) 
+    # coin = forms.CharField( max_length=50, required=True)
+    # created = forms.CharField(max_length=50, required=True)
+    # updated = forms.CharField( max_length=50, required=True) 
+    
 
-class CreateBookForm(forms.ModelForm):
-    class Meta:
-        model = models.Book
-        fields = '__all__'
+# class CreateBookForm(forms.ModelForm):
+#     class Meta:
+#         model = models.Book
+#         fields = '__all__'
 
-    def clean(self):
-        return super().clean()
+#     def clean(self):
+#         return super().clean()
