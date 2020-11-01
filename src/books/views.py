@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
-from .models import models
+from books.models import models
 
-from .forms import  CreateBookForm
+from books.forms import  CreateBookForm
 
 # Create your views here.
 

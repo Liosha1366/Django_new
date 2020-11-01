@@ -62,6 +62,7 @@ class Publish(models.Model):
 class Aut_book(models.Model): 
     author = models.CharField(
         'Имя автора',
+        default=None,
         max_length=50,
         blank=False,
         null=False,

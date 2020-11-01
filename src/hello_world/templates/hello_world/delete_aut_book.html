@@ -9,6 +9,7 @@
     <h1>Delete aut_book {{ aut_book }}?</h1>
     <form action="" method="post>">
         {% csrf_token %}
+        {{aut_book}}
         <button type="Submit">Submit</button>
     </form>
 </body>
