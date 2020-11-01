@@ -68,7 +68,7 @@ class Aut_book(models.Model):
     )
     last_name = models.CharField(
         "Фамилия автора",
-        max_length=40,
+        max_length=50,
         blank=True,
         null=True,
         )
