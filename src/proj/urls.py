@@ -28,6 +28,16 @@ urlpatterns = [
     # path('', RedirectView.as_view(url='/hello-world/')),
     path('admin/', admin.site.urls),
     # path('hello-world/', hello_world),
+    path('template/', view_book.StaticView.as_view()),
+
+    path('Create-View/', view_book.CreateBookView.as_view()),
+    path('update-View/<int:pk>/', view_book.UpdateBookView.as_view()),
+    path('delete-View/<int:pk>/', view_book.DeleteBookView.as_view()),
+
+    path('list-view/', view_book.ShowBookListView.as_view()),
+    path('bk/create/seris', view_hello_world.create_seris_view),
+    path('bk/create/genre', view_hello_world.create_genre_view),
+
     path('bk/create/aut_book', view_hello_world.create_aut_book_view),
     path('bk/create/publish', view_hello_world.create_publish_view),
     path('bk/create/seris', view_hello_world.create_seris_view),

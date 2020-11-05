@@ -2,26 +2,39 @@ from django.db import models
 # Create your models here.
 
 class Book(models.Model):
-    name = models.CharField(
+    # author = models.CharField(
+    #     'Имя автора',
+    #     max_length=100,
+    #     blank=False,
+    #     null=False,
+    # )
+
+    aut_book = models.CharField(
+    'Имя автора',
+         max_length=50,
+         blank=False,
+         null=False,
+    )
+    publish = models.CharField(
         "Издательство",
         max_length=50,
         blank=False,
         null=False,
     )
 
-    address = models.CharField(
-        "Адрес",
-        max_length=50,
-        blank=True,
-        null=True,
-    )
+    # address = models.CharField(
+    #     "Адрес",
+    #     max_length=50,
+    #     blank=True,
+    #     null=True,
+    # )
 
-    city = models.CharField(
-        "Город",
-        max_length=60,
-        blank=True,
-        null=True,
-    )
+    # city = models.CharField(
+    #     "Город",
+    #     max_length=60,
+    #     blank=True,
+    #     null=True,
+    # )
 
     country = models.CharField(
         "Страна",
@@ -30,15 +43,7 @@ class Book(models.Model):
         null=True,
     )
 
-    author = models.CharField(
-        'Имя автора',
-        default='NONE',
-        max_length=50,
-        blank=False,
-        null=False,
-    )
-
-    number = models.CharField(
+    name_book = models.CharField(
         'Название книги',
         default='NONE',
         max_length=50,
@@ -59,23 +64,23 @@ class Book(models.Model):
         default=0.0,
     )
 
-    created = models.DateTimeField(
-        verbose_name="created",
-        auto_now=False,
-        auto_now_add=True,
-    )
+    # created = models.DateTimeField(
+    #     verbose_name="created",
+    #     auto_now=False,
+    #     auto_now_add=True,
+    # )
 
-    updated = models.DateTimeField(
-        verbose_name="updated",
-        auto_now=True,
-        auto_now_add=False,
-    )
+    # updated = models.DateTimeField(
+    #     verbose_name="updated",
+    #     auto_now=True,
+    #     auto_now_add=False,
+    # )
     # publication_date = models.DateField(verbose_name="Дата",)
         
     
 
     def __str__(self):
-        return self.name
+        return self.aut_book
 
 
 

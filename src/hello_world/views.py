@@ -49,6 +49,7 @@ def update_aut_book_view(request, pk):
 
 def delete_aut_book_view(request, pk):
     if request.method == 'POST':
+        aut_book = Aut_book.objects.delete(pk=pk)
         return HttpResponseRedirect('/')
     else:
         aut_book = Aut_book.objects.get(pk=pk)
@@ -94,6 +95,7 @@ def update_publish_view(request, pk):
 
 def delete_publish_view(request, pk):
     if request.method == 'POST':
+        publish = Publish.objects.delete(pk=pk)
         return HttpResponseRedirect('/')
     else:
         publish = Publish.objects.get(pk=pk)
@@ -137,6 +139,7 @@ def update_seris_view(request, pk):
 
 def delete_seris_view(request, pk):
     if request.method == 'POST':
+        seris = Seris.objects.delete(pk=pk)
         return HttpResponseRedirect('/')
     else:
         seris = Seris.objects.get(pk=pk)
@@ -179,6 +182,7 @@ def update_gener_view(request, pk):
 
 def delete_genre_view(request, pk):
     if request.method == 'POST':
+        genre = Genre.objects.delete(pk=pk)
         return HttpResponseRedirect('/')
     else:
         genre = Genre.objects.get(pk=pk)
