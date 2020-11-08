@@ -64,17 +64,17 @@ class Book(models.Model):
         default=0.0,
     )
 
-    # created = models.DateTimeField(
-    #     verbose_name="created",
-    #     auto_now=False,
-    #     auto_now_add=True,
-    # )
+    created = models.DateTimeField(
+        verbose_name="created",
+        auto_now=False,
+        auto_now_add=True,
+    )
 
-    # updated = models.DateTimeField(
-    #     verbose_name="updated",
-    #     auto_now=True,
-    #     auto_now_add=False,
-    # )
+    updated = models.DateTimeField(
+        verbose_name="updated",
+        auto_now=True,
+        auto_now_add=False,
+    )
     # publication_date = models.DateField(verbose_name="Дата",)
         
     

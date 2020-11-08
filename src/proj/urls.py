@@ -17,24 +17,31 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 # from hello_world.views import hello_world
-# from django.views.generic import RedirectView
+from django.views.generic import RedirectView
 # from hello_world.views import create_aut_book_view
-from hello_world import views as view_hello_world
+from hello_world import views as view_hello_world 
+from books import views as view_book 
 
-from books import views as view_book
+from books.views import show_book_by_pk_view, ShowBookListView
+from proj import auth_views
 
 
 urlpatterns = [
-    # path('', RedirectView.as_view(url='/hello-world/')),
+    
+    path('', RedirectView.as_view(url='/lists-view/')),
     path('admin/', admin.site.urls),
-    # path('hello-world/', hello_world),
+    path('lists-view/', view_book.ShowBookListView.as_view(), name='lists-view'),
+    path('book-view/<int:book_id>/', show_book_by_pk_view, name="book-view"),
+    path('book-update-View/<int:pk>/', view_book.UpdateBookView.as_view(), name="book-update"),
+    path('book-delete-View/<int:pk>/', view_book.DeleteBookView.as_view(), name="book-delete"),
+    
+    
     path('template/', view_book.StaticView.as_view()),
 
     path('Create-View/', view_book.CreateBookView.as_view()),
     path('update-View/<int:pk>/', view_book.UpdateBookView.as_view()),
     path('delete-View/<int:pk>/', view_book.DeleteBookView.as_view()),
 
-    path('list-view/', view_book.ShowBookListView.as_view()),
     path('bk/create/seris', view_hello_world.create_seris_view),
     path('bk/create/genre', view_hello_world.create_genre_view),
 
@@ -56,5 +63,5 @@ urlpatterns = [
     path('book/create', view_book.create_book_view),
     path('book/update/<int:pk>/', view_book.update_book_view),
     path('book/delete/<int:pk>/', view_book.delete_book_view),
-    
+    path('auth/login/', auth_views.MyLoginView.as_view(), name='login'),
 ]

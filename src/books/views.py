@@ -6,6 +6,8 @@ from books.models import Book
 from books.forms import CreateBookForm, UpdateBookForm
 
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
+
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 # def create_book_view(request):
@@ -20,6 +22,17 @@ from django.views.generic import TemplateView, ListView, CreateView, UpdateView,
 #         request, 
 #         template_name="book/create_book.html", 
 #         context={'form': form})
+
+def show_book_by_pk_view(request, book_id):
+
+    book_obj = Book.objects.get(pk=book_id)
+    # con = {'book': book_obj}
+    return render(
+        request, 
+        template_name="books/book.html",
+        context={'book': book_obj},
+    )
+
 
 class ShowBookListView(ListView):
     template_name = "books/book_list.html"
@@ -53,12 +66,18 @@ def create_book_view(request):
         template_name="books/create_book.html",
         context={'form': form})
 
-class CreateBookView(CreateView):
+class CreateBookView(LoginRequiredMixin, CreateView):
     model = Book
     fields = ['aut_book', 'publish', 'country', 'name_book', 'gener', 'coin']
     success_url="/"
+    login_url = '/admin/login'
     template_name = "books/create_book.html"
 
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     print(self.request.user, 'liosha')
+    #     return context
+    
 
 def update_book_view(request, pk):
     if request.method == 'POST':

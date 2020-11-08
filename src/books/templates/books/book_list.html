@@ -1,17 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Books</title>
-</head>
-<body>
-    <h1>Template</h1>
-    <h2>Total object: {{ object_list|length }}</h2>
-    {% for book in object_list %}
-        <a href="/book/{{ book.pk }}">{{ book.aut_book }} in {{ book.publish }}</a><br>
-        {% comment %} {% endif %} {% endcomment %}
-        {% comment %} {{ book.nl|default: "nothing "}} {% endcomment %}
-        {% endfor %}
-</body>
-</html>
+{% extends 'customer_base.html' %}
+{% load static %}
+
+
+{% block title %}
+List of Book
+{% endblock title %}
+
+
+{% block body %}
+<title>Hello, world!</title>
+<h1></h1>    
+  <table class="table table-striped">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">aut_book</th>
+                <th scope="col">publish</th>
+                <th scope="col">name_book</th>
+                <th scope="col">gener</th>
+                <th scope="col">coin</th>
+                <th scope="col"> - </th>
+                
+                </tr>
+            </thead>
+            <tbody>
+            {% for obj in object_list %}
+                <tr>
+                <th scope="row">{{ obj.pk }}</th>
+                <td>{{ obj.aut_book }}</td>
+                <td>{{ obj.publish }}</td>
+                <td>{{ obj.name_book }}</td>
+                <td>{{ obj.gener }}</td>
+                <td>{{ obj.coin }}</td>
+                <td> <a href="{% url 'book-view' obj.pk%}" class="btn btn-success"><i class="far fa-eye"></i></a> 
+                <a href="{% url 'book-update' obj.pk %}" class="btn btn-warning"><i class="far fa-edit"></i></a> 
+                <a href="{% url 'book-delete' obj.pk %}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a> </td>
+                </tr>
+                
+            {% endfor %}
+            </tbody>
+            </table>
+{% endblock body %}
+
+     
+
+
+
+
+
