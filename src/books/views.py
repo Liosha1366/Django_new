@@ -142,5 +142,5 @@ class BookDetailView(DetailView):
     model = Book
     template_name = "books/detail_book.html"
     
-    def get_object(self, **kwargs):
-        return self.request.user
+    # def get_object(self, **kwargs):
+    #     return self.request.user

@@ -23,7 +23,6 @@ from django.views.generic import RedirectView
 from hello_world import views as view_hello_world 
 from books import views as view_book 
 from books.views import BookDetailView, show_book_by_pk_view, ShowBookListView
- 
 
 from proj import auth_views
 from django.conf.urls.static import static
@@ -73,6 +72,6 @@ urlpatterns = [
     path('book/delete/<int:pk>/', view_book.delete_book_view),
     path('auth/login/', auth_views.MyLoginView.as_view(), name='login'),
     
-    path('book-detail/', view_book.BookDetailView.as_view()),
+    path('book-detail/<int:pk>/', view_book.BookDetailView.as_view()),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

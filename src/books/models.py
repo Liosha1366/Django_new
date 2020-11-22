@@ -5,7 +5,7 @@ from django.db import models
 
 def upload(inst, filename):
     print(inst, filename)
-    return f'book_pics/{inst.pk}-{filename}'
+    return f'book_pic/{inst.pk}-{filename}'
 
 
 class Book(models.Model):
