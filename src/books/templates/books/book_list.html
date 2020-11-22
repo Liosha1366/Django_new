@@ -8,6 +8,53 @@ List of Book
 
 
 {% block body %}
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                <span aria-hidden="true">previous</span>
+            </a>
+        </li>
+    {% endif %}
+
+    {% for page in page_obj.paginator %}
+    <li class="page-item"><a class="page-link" href="?page={{ page.number }}">{{ page.number}}</a></li>
+    {% endfor %}
+
+
+{% comment %} <<prev if <=10 pages -> all, next>> {% endcomment %}
+
+{% if page_obj.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.page_obj.next_page_number }}">next</a>
+      </a>
+    </li>
+{% endif %}
+  </ul>
+</nav>
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+{% comment %} {% include 'paginator.html' %} {% endcomment %}
+
 <title>Hello, world!</title>
 <h1></h1>    
   <table class="table table-striped">
@@ -21,7 +68,7 @@ List of Book
                 <th scope="col">coin</th>
                 <th scope="col"> - </th>
                 
-                </tr>
+        </tr>
             </thead>
             <tbody>
             {% for obj in object_list %}
@@ -34,8 +81,10 @@ List of Book
                 <td>{{ obj.coin }}</td>
                 <td> <a href="{% url 'book-view' obj.pk%}" class="btn btn-success"><i class="far fa-eye"></i></a> 
                 <a href="{% url 'book-update' obj.pk %}" class="btn btn-warning"><i class="far fa-edit"></i></a> 
-                <a href="{% url 'book-delete' obj.pk %}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a> </td>
-                </tr>
+                <a href="{% url 'book-delete' obj.pk %}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                <a href="{% url 'orders:cart' %}?book={{ obj.pk }}" class="btn btn-info"><i class="far fa-shopping-cart"></i></a>
+                </td> 
+        </tr>
                 
             {% endfor %}
             </tbody>

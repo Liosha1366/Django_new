@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'hello_world',
     "books",
-    'crispy_forms'
+    'crispy_forms',
+    'orders'
 ]
 
 MIDDLEWARE = [
@@ -125,6 +126,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",

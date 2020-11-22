@@ -1,0 +1,46 @@
+{% extends 'customer_base.html' %}
+{% load static %}
+
+
+{% block title %}
+Cart
+{% endblock title %}
+
+
+{% block body %}
+    <h1>Cart</h1>
+    Cart ID:{{ cart.pk }}<br>
+    Book ID you just have added:{{ cart.pk }} {{ book.name_book}}<br> 
+<hr>
+<form action="{% url 'orders:update' %}" method="post">
+    {% csrf_token %}
+<table class="table">
+        {% for book_in_cart in cart.books.all%}
+        <tr>
+            <td>{{ book_in_cart.book.name_book }}</td>
+            <td><input type="number" name="{{ book_in_cart.pk }}" id="" value="{{ book_in_cart.quantity }}">
+                <small class="form-text text-muted">
+                    quantity
+                </small>
+            </td>
+            <td> price - {{ book_in_cart.price }}</td>
+            <td><a href="{% url 'orders:book-in-cart-del' book_in_cart.pk %}"><i class="fas fa-trash"</i></i></a></td>
+            
+        </tr>
+        {% endfor %}
+    </table>    
+    
+    <button name="submit_button" type="submit" class="btn btn-danger" value="checkout">Checkout</button><button type="submit" class="btn btn-success" value="edit">Edit</button>
+</form>
+    
+    
+<hr>
+Total price: {{ cart.total_price }}   
+{% endblock body %}
+
+     
+
+
+
+
+

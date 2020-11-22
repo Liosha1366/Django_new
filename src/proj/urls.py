@@ -16,20 +16,28 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
+from django.urls import include
 # from hello_world.views import hello_world
 from django.views.generic import RedirectView
 # from hello_world.views import create_aut_book_view
 from hello_world import views as view_hello_world 
 from books import views as view_book 
+from books.views import BookDetailView, show_book_by_pk_view, ShowBookListView
+ 
 
-from books.views import show_book_by_pk_view, ShowBookListView
 from proj import auth_views
+from django.conf.urls.static import static
+from django.conf import settings
+
+
 
 
 urlpatterns = [
     
     path('', RedirectView.as_view(url='/lists-view/')),
     path('admin/', admin.site.urls),
+    path('cart/', include('orders.urls', namespace='orders')),
+
     path('lists-view/', view_book.ShowBookListView.as_view(), name='lists-view'),
     path('book-view/<int:book_id>/', show_book_by_pk_view, name="book-view"),
     path('book-update-View/<int:pk>/', view_book.UpdateBookView.as_view(), name="book-update"),
@@ -64,4 +72,7 @@ urlpatterns = [
     path('book/update/<int:pk>/', view_book.update_book_view),
     path('book/delete/<int:pk>/', view_book.delete_book_view),
     path('auth/login/', auth_views.MyLoginView.as_view(), name='login'),
-]
+    
+    path('book-detail/', view_book.BookDetailView.as_view()),
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -5,9 +5,11 @@ from books.models import Book
 
 from books.forms import CreateBookForm, UpdateBookForm
 
-from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView, DetailView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+
 # Create your views here.
 
 # def create_book_view(request):
@@ -36,11 +38,12 @@ def show_book_by_pk_view(request, book_id):
 
 class ShowBookListView(ListView):
     template_name = "books/book_list.html"
+    paginate_by = 5
     model = Book
-    # queryset = Book.objects.all()
+    
 
     def get_queryset(self):
-        return super().get_queryset()[0:10]
+        return super().get_queryset()[0:20]
     
 class StaticView(TemplateView):
     template_name='books/static.html'
@@ -68,7 +71,8 @@ def create_book_view(request):
 
 class CreateBookView(LoginRequiredMixin, CreateView):
     model = Book
-    fields = ['aut_book', 'publish', 'country', 'name_book', 'gener', 'coin']
+    form_class = CreateBookForm
+    # fields = ['aut_book', 'publish', 'country', 'name_book', 'gener', 'coin']
     success_url="/"
     login_url = '/admin/login'
     template_name = "books/create_book.html"
@@ -133,5 +137,10 @@ class DeleteBookView(DeleteView):
         self.object.delete()
         return HttpResponseRedirect('/')
     
+
+class BookDetailView(DetailView):
+    model = Book
+    template_name = "books/detail_book.html"
     
-    
+    def get_object(self, **kwargs):
+        return self.request.user

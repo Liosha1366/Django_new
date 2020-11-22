@@ -1,0 +1,38 @@
+{% extends 'customer_base.html' %}
+{% load static %}
+
+
+{% block title %}
+List of Book
+{% endblock title %}
+
+
+{% block body %}
+
+  <h1>Book</h1>
+  {{ object.aut_book }}
+  {{ object.pic}}
+<div class="row">
+  {% comment %} {% for book in 'safgh' %} {% endcomment %}
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+      <img src="{{ object.pic.url }}" class="card-img-top" alt="">
+      <div class="card-body">
+        <h5 class="card-title">{{ object.aut_book }}</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+      </div>
+  </div>
+{% comment %} {% endfor %} {% endcomment %}
+</div>
+
+
+{% endblock body %}
+
+     
+
+
+
+
+

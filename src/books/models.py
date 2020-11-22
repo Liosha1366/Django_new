@@ -1,13 +1,15 @@
 from django.db import models
+
+
 # Create your models here.
 
+def upload(inst, filename):
+    print(inst, filename)
+    return f'book_pics/{inst.pk}-{filename}'
+
+
 class Book(models.Model):
-    # author = models.CharField(
-    #     'Имя автора',
-    #     max_length=100,
-    #     blank=False,
-    #     null=False,
-    # )
+
 
     aut_book = models.CharField(
     'Имя автора',
@@ -15,6 +17,15 @@ class Book(models.Model):
          blank=False,
          null=False,
     )
+
+    pic = models.ImageField(
+        "Book_picture",
+        upload_to=upload,
+        blank=True,
+        null=True,
+
+    )
+    
     publish = models.CharField(
         "Издательство",
         max_length=50,
@@ -50,6 +61,11 @@ class Book(models.Model):
         blank=False,
         null=False,
     )
+    pic = models.ImageField(
+        "Book picture",
+        upload_to=upload,
+    )
+
 
     gener = models.CharField(
         "Жанр",
